@@ -1,0 +1,1 @@
+=LAMBDA(mijnCel;ALS.FOUT(LINKS(mijnCel;VIND.ALLES(TEKEN(10);mijnCel)-1);0))
