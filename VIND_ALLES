@@ -1,0 +1,9 @@
+=LAMBDA(mijnTekst;mijnTeZoekenTekst;mijnIndex;
+ LET(mijnGevondenPosities;FILTER(REEKS(LENGTE(mijnTekst));DEEL(mijnTekst;REEKS(LENGTE(mijnTekst));1)=mijnTeZoekenTekst;"");
+     AantalGevondenPosities;RIJEN(mijnGevondenPosities);
+     mijnResultaat;ALS.VOORWAARDEN(
+          EN(AantalGevondenPosities=1;KIES.RIJEN(mijnGevondenPosities;1)="");#WAARDE!;
+          mijnIndex<0;ALS(-mijnIndex>AantalGevondenPosities;#WAARDE!;KIES.RIJEN(mijnGevondenPosities;AantalGevondenPosities+mijnIndex+1));
+          mijnIndex=0;#WAARDE!;
+          WAAR;ALS(mijnIndex>AantalGevondenPosities;#WAARDE!;KIES.RIJEN(mijnGevondenPosities;mijnIndex)));
+     mijnResultaat))
