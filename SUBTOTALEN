@@ -1,1 +1,5 @@
-=LAMBDA(mijnData;LET(mijnUniekeWaarden;UNIEK(mijnData);HOR.STAPELEN(mijnUniekeWaarden;SCAN(0;mijnUniekeWaarden;LAMBDA(Subtotaal;mijnWaarde;SOM(--(mijnWaarde=mijnData)))))))
+=LAMBDA(mijnData;
+ LET( mijnUniekeWaarden;UNIEK(mijnData);
+      HOR.STAPELEN(
+           mijnUniekeWaarden;
+           SCAN(0;mijnUniekeWaarden;LAMBDA(Subtotaal;mijnWaarde;SOM(--(mijnWaarde=mijnData)))))))
