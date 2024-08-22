@@ -1,0 +1,1 @@
+=LAMBDA(mijnWaarden;AantalKolommen;SpatieTeken;NieuweRegelTeken;BYCOL(BYROW(OMLOOP.RIJEN(mijnWaarden;AantalKolommen;"");LAMBDA(mijnRij;TEKST.COMBINEREN(SpatieTeken;WAAR;mijnRij)));LAMBDA(mijnKolom;TEKST.COMBINEREN(NieuweRegelTeken;WAAR;mijnKolom))))
