@@ -5,4 +5,7 @@
                     mijnVindAlles;VIND_ALLES_WAARDE_IN_RIJ(TeZoekenTekst;mijnTeDoorzoekenTekstenInRij);
                     VindAllesAantal;SOM(MijnVindAlles);
                     VindAllesIndex;VERGELIJKEN(1;MijnVindAlles;0);
-                    SCHAKELEN(VindAllesAantal;0;0;1;VindAllesIndex;-VindAllesAantal)))))
+                    SCHAKELEN(VindAllesAantal;
+                         0;0;
+                         1;VindAllesIndex;
+                         -VindAllesAantal)))))
