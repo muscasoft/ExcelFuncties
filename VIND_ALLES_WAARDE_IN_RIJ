@@ -1,0 +1,4 @@
+=LAMBDA(TeZoekenTekst;mijnTeDoorzoekenTekstenInRij;
+     BYROW(mijnTeDoorzoekenTekstenInRij;
+           LAMBDA(TeDoorzoekenTekst;
+           ALS(TeZoekenTekst="";"";1-(ISFOUT(VIND.ALLES(TeZoekenTekst;TeDoorzoekenTekst)))))))
