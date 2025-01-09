@@ -1,0 +1,13 @@
+=LAMBDA(mijnKolom; SCAN("";KIES.KOLOMMEN(mijnKolom;1);LAMBDA(a;v;ALS(v="";a;v))))
+
+// Vult een kolom met lege cellen met de waarde van de cel uit de laatste bovengelegen niet-lege cel.
+//
+// Voor     Na
+//   ABC    ABC
+//          ABC
+//          ABC
+//          ABC
+//   DEF    DEF
+//   GHI    GHI
+//          GHI
+// 
