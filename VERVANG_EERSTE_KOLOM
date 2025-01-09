@@ -1,0 +1,1 @@
+=LAMBDA(mijnReeks; mijnKolom; HOR.STAPELEN(mijnKolom;WEGLATEN(mijnReeks;0;1)))
