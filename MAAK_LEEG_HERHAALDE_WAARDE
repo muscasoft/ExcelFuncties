@@ -1,0 +1,12 @@
+=LAMBDA(mijnKolom;LET( mijnTijdelijkeKolom;WEGLATEN(VERT.STAPELEN("";mijnKolom);-1); ALS(mijnKolom=mijnTijdelijkeKolom;"";mijnKolom)))
+// Leegt in een kolom met herhaalde cellen met de waarde van de cellen met een herhaalde waarde.
+//
+// Voor     Na
+//   ABC    ABC
+//   ABC
+//   ABC
+//   ABC
+//   DEF    DEF
+//   GHI    GHI
+//   GHI
+// 
