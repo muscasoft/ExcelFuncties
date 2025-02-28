@@ -1,0 +1,31 @@
+=LAMBDA(matrix1;[matrix2];[matrix3];[matrix4];[matrix5];[matrix6];[matrix7];[matrix8];[matrix9];[matrix10];
+    LET(
+        AantalParameters; ALS.VOORWAARDEN(
+            NIET( ISOMITTED( matrix10 )); 10;
+            NIET( ISOMITTED( matrix9 )); 9;
+            NIET( ISOMITTED( matrix8 )); 8;
+            NIET( ISOMITTED( matrix7 )); 7;
+            NIET( ISOMITTED( matrix6 )); 6;
+            NIET( ISOMITTED( matrix5 )); 5;
+            NIET( ISOMITTED( matrix4 )); 4;
+            NIET( ISOMITTED( matrix3 )); 3;
+            WAAR; 2);
+        mijnMatrixTotaal; KIEZEN( AantalParameters - 1;
+            matrix2;
+            VERT.STAPELEN.EXT( matrix2; matrix3 );
+            VERT.STAPELEN.EXT( matrix2; matrix3; matrix4 );
+            VERT.STAPELEN.EXT( matrix2; matrix3; matrix4; matrix5 );
+            VERT.STAPELEN.EXT( matrix2; matrix3; matrix4; matrix5; matrix6 );
+            VERT.STAPELEN.EXT( matrix2; matrix3; matrix4; matrix5; matrix6; matrix7 );
+            VERT.STAPELEN.EXT( matrix2; matrix3; matrix4; matrix5; matrix6; matrix7; matrix8 );
+            VERT.STAPELEN.EXT( matrix2; matrix3; matrix4; matrix5; matrix6; matrix7; matrix8; matrix9 );
+            VERT.STAPELEN.EXT( matrix2; matrix3; matrix4; matrix5; matrix6; matrix7; matrix8; matrix9; matrix10 ));
+        Matrix1IsArray; NIET( EN( RIJEN( matrix1 ) = 1; KOLOMMEN( matrix1 ) = 1 ));
+        MatrixTotaalIsArray; NIET( EN( RIJEN( mijnMatrixTotaal ) = 1; KOLOMMEN( mijnMatrixTotaal ) = 1 ));
+        ALS( Matrix1IsArray;
+            ALS( MatrixTotaalIsArray;
+                VERT.STAPELEN( matrix1; mijnMatrixTotaal );
+                matrix1 );
+            ALS( MatrixTotaalIsArray;
+                mijnMatrixTotaal;
+                matrix1 ))))
