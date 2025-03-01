@@ -1,0 +1,23 @@
+=LAMBDA(matrix;rijen;[kolommen];[pad_with];[error_code];
+LET(ErrorCode; ALS( ISOMITTED( error_code ); NB(); error_code );
+    ALS( IS.MATRIX( matrix; ErrorCode ); LET(
+        RijenPositief;  rijen > 0;
+        KolommenPositief;  OF( ISOMITTED( kolommen ); kolommen > 0 );
+        AantalRijen; MAX( ALS( RijenPositief; rijen; -rijen); RIJEN( matrix ));
+        AantalKolommen; ALS(ISOMITTED( kolommen );
+            KOLOMMEN( matrix );
+            MAX( ALS( KolommenPositief; kolommen; -kolommen ); KOLOMMEN( matrix )));
+        EersteRij; ALS( RijenPositief; 1; -rijen - RIJEN( matrix ) + 1 );
+        LaatsteRij; ALS( RijenPositief; RIJEN( matrix ); AantalRijen );
+        EersteKolom; ALS( KolommenPositief; 1; -kolommen - KOLOMMEN( matrix ) + 1);
+        LaatsteKolom; ALS( KolommenPositief; KOLOMMEN( matrix ); AantalKolommen );
+        VulTeken; ALS( ISOMITTED( pad_with ); NB(); pad_with );
+        MAKEARRAY( AantalRijen; AantalKolommen;LAMBDA(IndexRij;IndexKolom;
+            ALS.VOORWAARDEN(
+                EN( RijenPositief; KolommenPositief );                ALS( OF( IndexRij > LaatsteRij; IndexKolom > LaatsteKolom ); VulTeken; INDEX( matrix; IndexRij; IndexKolom ));
+                EN( RijenPositief; NIET( KolommenPositief ));         ALS( OF( IndexRij > LaatsteRij; IndexKolom < EersteKolom ); VulTeken; INDEX( matrix; IndexRij; IndexKolom - EersteKolom + 1 ));
+                EN( NIET( RijenPositief ); KolommenPositief );        ALS( OF( IndexRij < EersteRij; IndexKolom > LaatsteKolom ); VulTeken; INDEX( matrix; IndexRij - EersteRij + 1; IndexKolom ));
+                EN( NIET( RijenPositief ); NIET( KolommenPositief )); ALS( OF( IndexRij < EersteRij; IndexKolom < EersteKolom ); VulTeken; INDEX( matrix; IndexRij - EersteRij + 1; IndexKolom - EersteKolom + 1 ))))));
+    matrix)))
+
+Vergelijkbaar met de normale UITBREIDEN-functie, maar dan ook met mogelijk negatieve waarden voor rijen en kolommen (dan worden de cellen erboven/ervoor gevuld met [pad_with]. Ook wordt gecontroleerd of matrix wel een matrix is.
