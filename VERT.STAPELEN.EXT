@@ -1,4 +1,4 @@
-=LAMBDA(matrix1;[matrix2];[matrix3];[matrix4];[matrix5];[matrix6];[matrix7];[matrix8];[matrix9];[matrix10];
+=LAMBDA(error_code;matrix1;[matrix2];[matrix3];[matrix4];[matrix5];[matrix6];[matrix7];[matrix8];[matrix9];[matrix10];
     LET(
         AantalParameters; ALS.VOORWAARDEN(
             NIET( ISOMITTED( matrix10 )); 10;
@@ -12,20 +12,18 @@
             WAAR; 2);
         mijnMatrixTotaal; KIEZEN( AantalParameters - 1;
             matrix2;
-            VERT.STAPELEN.EXT( matrix2; matrix3 );
-            VERT.STAPELEN.EXT( matrix2; matrix3; matrix4 );
-            VERT.STAPELEN.EXT( matrix2; matrix3; matrix4; matrix5 );
-            VERT.STAPELEN.EXT( matrix2; matrix3; matrix4; matrix5; matrix6 );
-            VERT.STAPELEN.EXT( matrix2; matrix3; matrix4; matrix5; matrix6; matrix7 );
-            VERT.STAPELEN.EXT( matrix2; matrix3; matrix4; matrix5; matrix6; matrix7; matrix8 );
-            VERT.STAPELEN.EXT( matrix2; matrix3; matrix4; matrix5; matrix6; matrix7; matrix8; matrix9 );
-            VERT.STAPELEN.EXT( matrix2; matrix3; matrix4; matrix5; matrix6; matrix7; matrix8; matrix9; matrix10 ));
-        Matrix1IsArray; NIET( EN( RIJEN( matrix1 ) = 1; KOLOMMEN( matrix1 ) = 1 ));
-        MatrixTotaalIsArray; NIET( EN( RIJEN( mijnMatrixTotaal ) = 1; KOLOMMEN( mijnMatrixTotaal ) = 1 ));
-        ALS( Matrix1IsArray;
-            ALS( MatrixTotaalIsArray;
-                VERT.STAPELEN( matrix1; mijnMatrixTotaal );
-                matrix1 );
-            ALS( MatrixTotaalIsArray;
-                mijnMatrixTotaal;
-                matrix1 ))))
+            VERT.STAPELEN.EXT( error_code; matrix2; matrix3 );
+            VERT.STAPELEN.EXT( error_code; matrix2; matrix3; matrix4 );
+            VERT.STAPELEN.EXT( error_code; matrix2; matrix3; matrix4; matrix5 );
+            VERT.STAPELEN.EXT( error_code; matrix2; matrix3; matrix4; matrix5; matrix6 );
+            VERT.STAPELEN.EXT( error_code; matrix2; matrix3; matrix4; matrix5; matrix6; matrix7 );
+            VERT.STAPELEN.EXT( error_code; matrix2; matrix3; matrix4; matrix5; matrix6; matrix7; matrix8 );
+            VERT.STAPELEN.EXT( error_code; matrix2; matrix3; matrix4; matrix5; matrix6; matrix7; matrix8; matrix9 );
+            VERT.STAPELEN.EXT( error_code; matrix2; matrix3; matrix4; matrix5; matrix6; matrix7; matrix8; matrix9; matrix10 ));
+        KIEZEN( ( --IS.MATRIX( matrix1; error_code )) + ( --IS.MATRIX( mijnMatrixTotaal; error_code )) * 2 + 1;
+            matrix1;
+            matrix1;
+            mijnMatrixTotaal;
+            VERT.STAPELEN( matrix1; mijnMatrixTotaal ))))
+
+Vergelijkbaar met VERT.STAPELEN-functie, met het verschil dat gecontroleerd wordt of de opgegeven matrices wel een matrix zijn.
