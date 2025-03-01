@@ -1,0 +1,16 @@
+=LAMBDA(matrix;[error_code];
+    KIEZEN(
+        ALS( EN( RIJEN( matrix ) = 1; KOLOMMEN( matrix ) = 1 ); 1; 2);
+        ALS(
+            ISOMITTED( error_code );
+            NIET( ISNB( matrix ));
+            ALS( ISNB( matrix ); NIET( ISNB( error_code )); ALS( ISNB( error_code ); WAAR; matrix <> error_code )));
+        WAAR
+    )
+)
+
+matrix is sowieso als meerdere rijen of kolommen en als één cel dan met een gewone waarde (dus niet NB of niet pad-with)
+
+waar als
+R>1 of K > 1
+als r=1 en k=1: als m=N/B en pad=N/B of als m<>N/B en m = pad
