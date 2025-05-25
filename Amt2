@@ -1,0 +1,16 @@
+"=LET(
+mijnReeks, Status!$A$2:$O$27,
+GeselecteerdeDirectie, HOOFDLETTERS($E$1),
+InclusiefRvBDt, HOOFDLETTERS($E$2),
+mijnTopRijMetNamen, KIES.RIJEN(mijnReeks,1),
+mijnOpdrachtenTmp, WEGLATEN(mijnReeks,1),
+mijnOpdrachten, VervangEersteKolom(mijnOpdrachtenTmp, HerhaalLegeCellen(KIES.KOLOMMEN(mijnOpdrachtenTmp, 1))),
+RelevantieGeselecteerdeDirectie, HOOFDLETTERS(KIES.KOLOMMEN(mijnOpdrachten, VindKolom(GeselecteerdeDirectie, mijnTopRijMetNamen))),
+RelevantieGeselecteerdeRvB, HOOFDLETTERS(KIES.KOLOMMEN(mijnOpdrachten, VindKolom(""RVB"", mijnTopRijMetNamen))),
+RelevantieGeselecteerdeDT, HOOFDLETTERS(KIES.KOLOMMEN(mijnOpdrachten, VindKolom(""DT"", mijnTopRijMetNamen))),
+Relevantie, ALS(((--(RelevantieGeselecteerdeDirectie = ""P"") + (RelevantieGeselecteerdeDirectie = ""S"") > 0)+
+    (--(--(RelevantieGeselecteerdeRvB = ""P"") + (RelevantieGeselecteerdeRvB = ""S"") > 0)) * --(InclusiefRvBDt = ""JA"")+
+    (--(--(RelevantieGeselecteerdeDT  = ""P"") + (RelevantieGeselecteerdeDT  = ""S"") > 0)) * --(InclusiefRvBDt = ""JA"") > 0), ""Ja"", ""Neen""),
+mijnRelevanteOpdrachtenTmp, FILTER(mijnOpdrachten, Relevantie = ""Ja""),
+mijnRelevanteOpdrachten, VervangEersteKolom(mijnRelevanteOpdrachtenTmp, MaakLeegHerhaaldeWaarde(KIES.KOLOMMEN(mijnRelevanteOpdrachtenTmp, 1))),
+VERT.STAPELEN(mijnTopRijMetNamen, mijnRelevanteOpdrachten))"
